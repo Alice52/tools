@@ -18,25 +18,19 @@ import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 import java.util.stream.Collectors;
 
-/** @author: gxz 514190950@qq.com */
+/**
+ * @author: gxz 514190950@qq.com
+ */
 public class MongoScanner {
-  private Logger logger = LoggerFactory.getLogger(getClass());
-
-  private MongoCollection<Document> collection;
-
-  private final int scanCount;
-
-  private List<String> colNames;
-
-  private MongoDefinition mongoDefinition;
-
   private static final int[] TYPE = {3, 16, 18, 8, 9, 2, 1};
-
   private static final int ARRAY_TYPE = 4;
-
   private static final int MAX_COUNT = 200000;
-
   private static final int DEFAULT_COUNT = 100000;
+  private final int scanCount;
+  private Logger logger = LoggerFactory.getLogger(getClass());
+  private MongoCollection<Document> collection;
+  private List<String> colNames;
+  private MongoDefinition mongoDefinition;
 
   public MongoScanner(MongoCollection<Document> collection) {
     this.collection = collection;
@@ -239,10 +233,15 @@ public class MongoScanner {
         .setPropertyName(this.collection.getNamespace().getCollectionName());
   }
 
+  public <T> List<T> mergeList(List<T> list1, List<T> list2) {
+    list1.addAll(list2);
+    return list1;
+  }
+
   /** 功能描述:forkJoin多线程框架的实现 通过业务拆分解析类型 */
   class ForkJoinProcessType extends RecursiveTask<List<MongoDefinition>> {
-    List<String> names;
     private final int THRESHOLD = 6;
+    List<String> names;
 
     ForkJoinProcessType(List<String> names) {
       this.names = names;
@@ -273,9 +272,9 @@ public class MongoScanner {
 
   /** 功能描述:forkJoin多线程框架的实现 通过业务拆分获得属性名 */
   class ForkJoinGetProcessName extends RecursiveTask<List<String>> {
+    private final int THRESHOLD = 5000;
     private int begin; // 查询开始位置
     private int end;
-    private final int THRESHOLD = 5000;
 
     ForkJoinGetProcessName(int begin, int end) {
       this.begin = begin;
@@ -296,10 +295,5 @@ public class MongoScanner {
         return distinctAndJoin(pre.join(), next.join()); // 去重合并
       }
     }
-  }
-
-  public <T> List<T> mergeList(List<T> list1, List<T> list2) {
-    list1.addAll(list2);
-    return list1;
   }
 }

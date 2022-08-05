@@ -21,15 +21,17 @@ import org.springframework.context.annotation.Primary;
  */
 @Configuration
 public class DbConfig {
+  private static boolean mongo = false;
   @Value("${renren.database: mysql}")
   private String database;
-
   @Autowired private MySQLGeneratorRepository mySQLGeneratorRepository;
   @Autowired private OracleGeneratorRepository oracleGeneratorRepository;
   @Autowired private SQLServerGeneratorRepository sqlServerGeneratorRepository;
   @Autowired private PostgreSQLGeneratorRepository postgreSQLGeneratorRepository;
 
-  private static boolean mongo = false;
+  public static boolean isMongo() {
+    return mongo;
+  }
 
   @Bean
   @Primary
@@ -55,9 +57,5 @@ public class DbConfig {
       MongoDBGeneratorRepository mongoDBGeneratorRepository) {
     mongo = true;
     return mongoDBGeneratorRepository;
-  }
-
-  public static boolean isMongo() {
-    return mongo;
   }
 }

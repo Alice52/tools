@@ -342,7 +342,13 @@ public class GenUtils {
     }
 
     if (template.contains("DTO.java.vm")) {
-      return packagePath + "model" + File.separator + "dto" + File.separator + className + "DTO.java";
+      return packagePath
+          + "model"
+          + File.separator
+          + "dto"
+          + File.separator
+          + className
+          + "DTO.java";
     }
 
     if (template.contains("Converter.java.vm")) {

@@ -13,7 +13,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-/** @author: gxz gongxuanzhang@foxmail.com */
+/**
+ * @author: gxz gongxuanzhang@foxmail.com
+ */
 @Component
 @ConfigurationProperties(prefix = "mongodb")
 public class MongoConfig {
@@ -47,6 +49,11 @@ public class MongoConfig {
     return getMongoClient().getDatabase(dataBase);
   }
 
+  public MongoConfig setDataBase(String dataBase) {
+    this.dataBase = dataBase;
+    return this;
+  }
+
   public MongoConfig setHost(String host) {
     this.host = host;
     return this;
@@ -64,11 +71,6 @@ public class MongoConfig {
 
   public MongoConfig setPassword(String password) {
     this.password = password;
-    return this;
-  }
-
-  public MongoConfig setDataBase(String dataBase) {
-    this.dataBase = dataBase;
     return this;
   }
 

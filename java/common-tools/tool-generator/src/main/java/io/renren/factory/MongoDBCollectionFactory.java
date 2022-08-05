@@ -15,7 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/** @author: gxz gongxuanzhang@foxmail.com */
+/**
+ * @author: gxz gongxuanzhang@foxmail.com
+ */
 @Component
 @Conditional(MongoCondition.class)
 public class MongoDBCollectionFactory {
@@ -29,23 +31,6 @@ public class MongoDBCollectionFactory {
   // 此处是为了兼容mongo相关内容和关系型数据库的静态耦合所导致的问题
 
   @Autowired private MongoDatabase database;
-
-  @PostConstruct
-  public void initMongoDatabase() {
-    mongoDatabase = database;
-  }
-
-  /**
-   * * 通过表名获得查询对象
-   *
-   * @author gxz
-   * @date 2020/5/9
-   * @param collectionName mongo的集合名(表名)
-   * @return 连接查询对象
-   */
-  public MongoCollection<Document> getCollection(String collectionName) {
-    return mongoDatabase.getCollection(collectionName);
-  }
 
   /**
    * * 获得当前数据库的集合名称 注: mongo相对关系型数据库较为特殊，查询表名无法分页，用stream实现
@@ -66,6 +51,7 @@ public class MongoDBCollectionFactory {
     }
     return names.stream().skip(skip).limit(limit).collect(Collectors.toList());
   }
+
   /**
    * * 获得集合名称总数(表的数量) 为了适配MyBatisPlus的分页插件 提供方法
    *
@@ -94,5 +80,22 @@ public class MongoDBCollectionFactory {
     return getCollectionNames().stream()
         .filter((name) -> name.contains(likeName))
         .collect(Collectors.toList());
+  }
+
+  @PostConstruct
+  public void initMongoDatabase() {
+    mongoDatabase = database;
+  }
+
+  /**
+   * * 通过表名获得查询对象
+   *
+   * @author gxz
+   * @date 2020/5/9
+   * @param collectionName mongo的集合名(表名)
+   * @return 连接查询对象
+   */
+  public MongoCollection<Document> getCollection(String collectionName) {
+    return mongoDatabase.getCollection(collectionName);
   }
 }

@@ -14,7 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** @author: gxz gongxuanzhang@foxmail.com */
+/**
+ * @author: gxz gongxuanzhang@foxmail.com
+ */
 @Repository
 @Conditional(MongoCondition.class)
 public class MongoDBGeneratorRepository implements GeneratorRepository {

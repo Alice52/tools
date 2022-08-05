@@ -28,8 +28,9 @@
     </select>
 
     <select id="queryTable" resultMap="tableMap">
-		select dt.table_name tableName,dtc.comments tableComment,dt.last_analyzed createTime from user_tables dt,user_tab_comments dtc where dt.table_name=dtc.table_name and dt.table_name = UPPER(#{tableName})
-	</select>
+        select dt.table_name tableName,dtc.comments tableComment,dt.last_analyzed createTime from user_tables
+        dt,user_tab_comments dtc where dt.table_name=dtc.table_name and dt.table_name = UPPER(#{tableName})
+    </select>
 
     <select id="queryColumns" resultMap="tableMap">
         select temp.column_name columnname,
@@ -58,6 +59,6 @@
         ) temp
         where temp.row_flg = 1
         order by temp.column_id
-	</select>
+    </select>
 
 </mapper>

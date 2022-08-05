@@ -54,11 +54,6 @@ public class MongoDefinition implements Serializable {
     return type == null;
   }
 
-  public MongoDefinition setType(Integer type) {
-    this.type = type;
-    return this;
-  }
-
   public String getPropertyName() {
     return propertyName;
   }
@@ -70,6 +65,11 @@ public class MongoDefinition implements Serializable {
 
   public Integer getType() {
     return type;
+  }
+
+  public MongoDefinition setType(Integer type) {
+    this.type = type;
+    return this;
   }
 
   public boolean isArray() {
