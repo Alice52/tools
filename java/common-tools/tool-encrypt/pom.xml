@@ -21,6 +21,16 @@
             <groupId>top.hubby</groupId>
             <artifactId>common-api</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.github.alice52</groupId>
+                    <artifactId>database-mybatis-plus</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.github.alice52</groupId>
+                    <artifactId>common-redis</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
