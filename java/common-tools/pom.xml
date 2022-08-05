@@ -28,7 +28,7 @@
         <!-- common-api module -->
         <swagger.verion>3.0.0</swagger.verion>
         <slf4j.api.version>1.7.25</slf4j.api.version>
-        <logback.core.version>1.2.3</logback.core.version>
+        <logback.core.version>1.2.11</logback.core.version>
         <logback.classic.version>1.2.11</logback.classic.version>
 
         <lombok.version>1.18.24</lombok.version>
