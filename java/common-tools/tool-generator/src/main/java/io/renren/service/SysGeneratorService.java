@@ -30,42 +30,42 @@ import java.util.zip.ZipOutputStream;
  */
 @Service
 public class SysGeneratorService {
-  @Autowired private GeneratorRepository generatorRepository;
+    @Autowired private GeneratorRepository generatorRepository;
 
-  public PageUtils queryList(Query query) {
-    Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
-    List<Map<String, Object>> list = generatorRepository.queryList(query);
-    int total = (int) page.getTotal();
-    if (generatorRepository instanceof MongoDBGeneratorRepository) {
-      total = MongoDBCollectionFactory.getCollectionTotal(query);
-    }
-    return new PageUtils(list, total, query.getLimit(), query.getPage());
-  }
-
-  public Map<String, String> queryTable(String tableName) {
-    return generatorRepository.queryTable(tableName);
-  }
-
-  public List<Map<String, String>> queryColumns(String tableName) {
-    return generatorRepository.queryColumns(tableName);
-  }
-
-  public byte[] generatorCode(String[] tableNames) {
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    ZipOutputStream zip = new ZipOutputStream(outputStream);
-    for (String tableName : tableNames) {
-      // 查询表信息
-      Map<String, String> table = queryTable(tableName);
-      // 查询列信息
-      List<Map<String, String>> columns = queryColumns(tableName);
-      // 生成代码
-      GenUtils.generatorCode(table, columns, zip);
-    }
-    if (MongoManager.isMongo()) {
-      GenUtils.generatorMongoCode(tableNames, zip);
+    public PageUtils queryList(Query query) {
+        Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
+        List<Map<String, Object>> list = generatorRepository.queryList(query);
+        int total = (int) page.getTotal();
+        if (generatorRepository instanceof MongoDBGeneratorRepository) {
+            total = MongoDBCollectionFactory.getCollectionTotal(query);
+        }
+        return new PageUtils(list, total, query.getLimit(), query.getPage());
     }
 
-    IOUtils.closeQuietly(zip);
-    return outputStream.toByteArray();
-  }
+    public Map<String, String> queryTable(String tableName) {
+        return generatorRepository.queryTable(tableName);
+    }
+
+    public List<Map<String, String>> queryColumns(String tableName) {
+        return generatorRepository.queryColumns(tableName);
+    }
+
+    public byte[] generatorCode(String[] tableNames) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ZipOutputStream zip = new ZipOutputStream(outputStream);
+        for (String tableName : tableNames) {
+            // 查询表信息
+            Map<String, String> table = queryTable(tableName);
+            // 查询列信息
+            List<Map<String, String>> columns = queryColumns(tableName);
+            // 生成代码
+            GenUtils.generatorCode(table, columns, zip);
+        }
+        if (MongoManager.isMongo()) {
+            GenUtils.generatorMongoCode(tableNames, zip);
+        }
+
+        IOUtils.closeQuietly(zip);
+        return outputStream.toByteArray();
+    }
 }

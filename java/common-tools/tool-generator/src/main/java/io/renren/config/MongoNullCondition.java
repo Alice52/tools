@@ -9,9 +9,9 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
  */
 public class MongoNullCondition implements Condition {
 
-  @Override
-  public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-    String database = context.getEnvironment().getProperty("renren.database");
-    return !"mongodb".equalsIgnoreCase(database);
-  }
+    @Override
+    public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+        String database = context.getEnvironment().getProperty("renren.database");
+        return !"mongodb".equalsIgnoreCase(database);
+    }
 }

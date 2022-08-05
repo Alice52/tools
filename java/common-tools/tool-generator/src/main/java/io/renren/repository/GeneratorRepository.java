@@ -21,9 +21,9 @@ import java.util.Map;
  * @since 2018-07-24
  */
 public interface GeneratorRepository {
-  List<Map<String, Object>> queryList(Map<String, Object> map);
+    List<Map<String, Object>> queryList(Map<String, Object> map);
 
-  Map<String, String> queryTable(String tableName);
+    Map<String, String> queryTable(String tableName);
 
-  List<Map<String, String>> queryColumns(String tableName);
+    List<Map<String, String>> queryColumns(String tableName);
 }

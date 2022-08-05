@@ -12,34 +12,34 @@ import java.util.Map;
  * @date 2020/5/10 0:14
  */
 public class MongoGeneratorEntity {
-  /** *表信息* */
-  private Map<String, String> tableInfo;
-  /** *主类的列名信息* */
-  private List<Map<String, String>> columns;
+    /** *表信息* */
+    private Map<String, String> tableInfo;
+    /** *主类的列名信息* */
+    private List<Map<String, String>> columns;
 
-  public TableEntity toTableEntity() {
-    TableEntity tableEntity = new TableEntity();
-    Map<String, String> tableInfo = this.tableInfo;
-    tableEntity.setTableName(tableInfo.get("tableName"));
-    tableEntity.setComments("");
-    return tableEntity;
-  }
+    public TableEntity toTableEntity() {
+        TableEntity tableEntity = new TableEntity();
+        Map<String, String> tableInfo = this.tableInfo;
+        tableEntity.setTableName(tableInfo.get("tableName"));
+        tableEntity.setComments("");
+        return tableEntity;
+    }
 
-  public Map<String, String> getTableInfo() {
-    return tableInfo;
-  }
+    public Map<String, String> getTableInfo() {
+        return tableInfo;
+    }
 
-  public MongoGeneratorEntity setTableInfo(Map<String, String> tableInfo) {
-    this.tableInfo = tableInfo;
-    return this;
-  }
+    public MongoGeneratorEntity setTableInfo(Map<String, String> tableInfo) {
+        this.tableInfo = tableInfo;
+        return this;
+    }
 
-  public List<Map<String, String>> getColumns() {
-    return columns;
-  }
+    public List<Map<String, String>> getColumns() {
+        return columns;
+    }
 
-  public MongoGeneratorEntity setColumns(List<Map<String, String>> columns) {
-    this.columns = columns;
-    return this;
-  }
+    public MongoGeneratorEntity setColumns(List<Map<String, String>> columns) {
+        this.columns = columns;
+        return this;
+    }
 }

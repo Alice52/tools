@@ -28,27 +28,27 @@ import java.util.Map;
 @Controller
 @RequestMapping("/sys/generator")
 public class SysGeneratorController {
-  @Autowired private SysGeneratorService sysGeneratorService;
+    @Autowired private SysGeneratorService sysGeneratorService;
 
-  /** 列表 */
-  @ResponseBody
-  @RequestMapping("/list")
-  public R list(@RequestParam Map<String, Object> params) {
-    PageUtils pageUtil = sysGeneratorService.queryList(new Query(params));
+    /** 列表 */
+    @ResponseBody
+    @RequestMapping("/list")
+    public R list(@RequestParam Map<String, Object> params) {
+        PageUtils pageUtil = sysGeneratorService.queryList(new Query(params));
 
-    return R.ok().put("page", pageUtil);
-  }
+        return R.ok().put("page", pageUtil);
+    }
 
-  /** 生成代码 */
-  @RequestMapping("/code")
-  public void code(String tables, HttpServletResponse response) throws IOException {
-    byte[] data = sysGeneratorService.generatorCode(tables.split(","));
+    /** 生成代码 */
+    @RequestMapping("/code")
+    public void code(String tables, HttpServletResponse response) throws IOException {
+        byte[] data = sysGeneratorService.generatorCode(tables.split(","));
 
-    response.reset();
-    response.setHeader("Content-Disposition", "attachment; filename=\"renren.zip\"");
-    response.addHeader("Content-Length", "" + data.length);
-    response.setContentType("application/octet-stream; charset=UTF-8");
+        response.reset();
+        response.setHeader("Content-Disposition", "attachment; filename=\"renren.zip\"");
+        response.addHeader("Content-Length", "" + data.length);
+        response.setContentType("application/octet-stream; charset=UTF-8");
 
-    IOUtils.write(data, response.getOutputStream());
-  }
+        IOUtils.write(data, response.getOutputStream());
+    }
 }

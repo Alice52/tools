@@ -21,41 +21,43 @@ import org.springframework.context.annotation.Primary;
  */
 @Configuration
 public class DbConfig {
-  private static boolean mongo = false;
-  @Value("${renren.database: mysql}")
-  private String database;
-  @Autowired private MySQLGeneratorRepository mySQLGeneratorRepository;
-  @Autowired private OracleGeneratorRepository oracleGeneratorRepository;
-  @Autowired private SQLServerGeneratorRepository sqlServerGeneratorRepository;
-  @Autowired private PostgreSQLGeneratorRepository postgreSQLGeneratorRepository;
+    private static boolean mongo = false;
 
-  public static boolean isMongo() {
-    return mongo;
-  }
+    @Value("${renren.database: mysql}")
+    private String database;
 
-  @Bean
-  @Primary
-  @Conditional(MongoNullCondition.class)
-  public GeneratorRepository getGeneratorRepository() {
-    if ("mysql".equalsIgnoreCase(database)) {
-      return mySQLGeneratorRepository;
-    } else if ("oracle".equalsIgnoreCase(database)) {
-      return oracleGeneratorRepository;
-    } else if ("sqlserver".equalsIgnoreCase(database)) {
-      return sqlServerGeneratorRepository;
-    } else if ("postgresql".equalsIgnoreCase(database)) {
-      return postgreSQLGeneratorRepository;
-    } else {
-      throw new RRException("不支持当前数据库：" + database);
+    @Autowired private MySQLGeneratorRepository mySQLGeneratorRepository;
+    @Autowired private OracleGeneratorRepository oracleGeneratorRepository;
+    @Autowired private SQLServerGeneratorRepository sqlServerGeneratorRepository;
+    @Autowired private PostgreSQLGeneratorRepository postgreSQLGeneratorRepository;
+
+    public static boolean isMongo() {
+        return mongo;
     }
-  }
 
-  @Bean
-  @Primary
-  @Conditional(MongoCondition.class)
-  public GeneratorRepository getMongoDBRepository(
-      MongoDBGeneratorRepository mongoDBGeneratorRepository) {
-    mongo = true;
-    return mongoDBGeneratorRepository;
-  }
+    @Bean
+    @Primary
+    @Conditional(MongoNullCondition.class)
+    public GeneratorRepository getGeneratorRepository() {
+        if ("mysql".equalsIgnoreCase(database)) {
+            return mySQLGeneratorRepository;
+        } else if ("oracle".equalsIgnoreCase(database)) {
+            return oracleGeneratorRepository;
+        } else if ("sqlserver".equalsIgnoreCase(database)) {
+            return sqlServerGeneratorRepository;
+        } else if ("postgresql".equalsIgnoreCase(database)) {
+            return postgreSQLGeneratorRepository;
+        } else {
+            throw new RRException("不支持当前数据库：" + database);
+        }
+    }
+
+    @Bean
+    @Primary
+    @Conditional(MongoCondition.class)
+    public GeneratorRepository getMongoDBRepository(
+            MongoDBGeneratorRepository mongoDBGeneratorRepository) {
+        mongo = true;
+        return mongoDBGeneratorRepository;
+    }
 }

@@ -1,12 +1,12 @@
-name: Build Image Tool-Generator
+name: Build Image Tool-Encrypt
 
 on:
   push:
     branches:
       - master
     paths:
-      - 'java/common-tools/tool-generator/**'
-      - '.github/workflows/docker-tool-generator.yml'
+      - 'java/common-tools/tool-encrypt/**'
+      - '.github/workflows/docker-tool-encrypt.yml'
 
 jobs:
   main:
@@ -51,13 +51,13 @@ jobs:
       - name: Upload Tool Generator Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: tool-generator-1.0-SNAPSHOT.jar
-          path: ${{ github.workspace }}/**/tool-generator-1.0-SNAPSHOT.jar
+          name: tool-encrypt-1.0-SNAPSHOT.jar
+          path: ${{ github.workspace }}/**/tool-encrypt-1.0-SNAPSHOT.jar
           retention-days: 7
 
-      - name: Push Tool Generator Image
+      - name: Push Tool Encrypt Image
         run: |
-          MODULE_NAME=tool-generator
+          MODULE_NAME=tool-encrypt
           cd $PROJECT_HOME/$BACKEND/$PROJECT_NAME/$MODULE_NAME
           image=$IMAGE_PREFIX-$MODULE_NAME:${TAG}
           docker build -f Dockerfile --build-arg MODULE_NAME=$MODULE_NAME --build-arg JASYPT_ENCRYPTOR_PASSWORD=$JASYPT_ENCRYPTOR_PASSWORD -t ${image} .
