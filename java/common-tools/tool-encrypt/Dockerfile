@@ -1,4 +1,4 @@
-FROM openjdk:8u212-jre-slim-stretch
+FROM openjdk:8-jre-slim-stretch
 VOLUME /tmp
 
 ARG JASYPT_ENCRYPTOR_PASSWORD=""

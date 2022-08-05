@@ -1,4 +1,4 @@
-FROM openjdk:8u121-jre-alpine
+FROM openjdk:8-jre-alpine
 VOLUME /tmp
 ARG MODULE_NAME=""
 ARG JASYPT_ENCRYPTOR_PASSWORD=""
