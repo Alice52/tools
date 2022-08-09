@@ -53,7 +53,7 @@
         <junit.version>4.12</junit.version>
         <jquery.version>3.3.1</jquery.version>
         <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
-        <swagger2.knife4j>2.0.4</swagger2.knife4j>
+        <swagger2.knife4j>2.0.9</swagger2.knife4j>
         <swagger.starter>3.0.0</swagger.starter>
     </properties>
 
