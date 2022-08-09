@@ -26,6 +26,7 @@
         <io.github.alice52.version>0.0.1</io.github.alice52.version>
 
         <!-- common-api module -->
+        <arthas.version>3.6.4</arthas.version>
         <swagger.verion>3.0.0</swagger.verion>
         <slf4j.api.version>1.7.25</slf4j.api.version>
         <logback.core.version>1.2.11</logback.core.version>
@@ -68,6 +69,12 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>${swagger.starter}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.taobao.arthas</groupId>
+                <artifactId>arthas-spring-boot-starter</artifactId>
+                <version>${arthas.version}</version>
             </dependency>
 
             <!-- swagger3 -->

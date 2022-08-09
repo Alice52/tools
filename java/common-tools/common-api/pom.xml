@@ -23,6 +23,11 @@
             <version>${io.github.alice52.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.taobao.arthas</groupId>
+            <artifactId>arthas-spring-boot-starter</artifactId>
+            <scope>runtime</scope>
+        </dependency>
 
         <!-- spring web -->
         <dependency>
