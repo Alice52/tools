@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 jasypt:
   encryptor:
@@ -9,7 +9,7 @@ arthas:
   username: arthas
   password: ${JASYPT_ENCRYPTOR_PASSWORD}
   agentId: ${spring.application.name}
-  tunnel-server: ws://${COMMON_SERVICE_IP}:7777/ws
+  tunnel-server: ws://127.0.0.1:7777/ws
 
 # Spring 相关
 spring:
