@@ -6,6 +6,9 @@ jasypt:
     password: ${JASYPT_ENCRYPTOR_PASSWORD}
 
 arthas:
+  # https://arthas.aliyun.com/doc/arthas-properties.html#%E6%94%AF%E6%8C%81%E7%9A%84%E9%85%8D%E7%BD%AE%E9%A1%B9
+  telnetPort: 0
+  httpPort: 0
   username: arthas
   password: ${JASYPT_ENCRYPTOR_PASSWORD}
   agentId: ${spring.application.name}
