@@ -1,4 +1,4 @@
-name: Build Image Tool-Encrypt
+name: Build Tool-Project
 
 on:
   push:
