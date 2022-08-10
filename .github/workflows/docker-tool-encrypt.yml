@@ -34,6 +34,7 @@ jobs:
           echo "ALI_DOCKER_USERNAME=${{ secrets.ALI_DOCKER_REGISTRY_USERNAME }}" >> $GITHUB_ENV
           echo "ALI_DOCKER_PASSWORD=${{ secrets.ALI_DOCKER_REGISTRY_PASSWORD }}" >> $GITHUB_ENV
           echo "JASYPT_ENCRYPTOR_PASSWORD=${{ secrets.JASYPT_ENCRYPTOR_PASSWORD }}" >> $GITHUB_ENV
+          echo "COMMON_SERVICE_IP=${{ secrets.COMMON_SERVICE_IP }}"
           echo "PROJECT_HOME=$PWD" >> $GITHUB_ENV
           echo "TAG=`echo \`date +%Y%m%d\`.${GITHUB_SHA} | cut -c1-16`" >> $GITHUB_ENV
 
@@ -61,7 +62,7 @@ jobs:
           MODULE_NAME=tool-encrypt
           cd $PROJECT_HOME/$BACKEND/$PROJECT_NAME/$MODULE_NAME
           image=$IMAGE_PREFIX-$MODULE_NAME:${TAG}
-          docker build -f Dockerfile --build-arg MODULE_NAME=$MODULE_NAME --build-arg JASYPT_ENCRYPTOR_PASSWORD=$JASYPT_ENCRYPTOR_PASSWORD -t ${image} .
+          docker build -f Dockerfile --build-arg MODULE_NAME=$MODULE_NAME --build-arg COMMON_SERVICE_IP=$COMMON_SERVICE_IP --build-arg JASYPT_ENCRYPTOR_PASSWORD=$JASYPT_ENCRYPTOR_PASSWORD -t ${image} .
           docker login --username=$ALI_DOCKER_USERNAME --password=$ALI_DOCKER_PASSWORD $ALI_DOCKER_REGISTRY
           docker tag $image $ALI_DOCKER_REGISTRY/alice52/$image
           docker push $ALI_DOCKER_REGISTRY/alice52/$image
