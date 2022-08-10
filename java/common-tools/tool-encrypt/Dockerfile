@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM amazoncorretto:8-alpine
 VOLUME /tmp
 
 ARG JASYPT_ENCRYPTOR_PASSWORD=""
