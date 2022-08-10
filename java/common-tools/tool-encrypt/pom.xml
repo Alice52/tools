@@ -12,10 +12,6 @@
 
     <artifactId>tool-encrypt</artifactId>
 
-    <properties>
-        <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>top.hubby</groupId>
