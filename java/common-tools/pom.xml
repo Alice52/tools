@@ -41,7 +41,7 @@
         <guava.version>31.1-jre</guava.version>
 
         <validation.api.version>2.0.1.Final</validation.api.version>
-        <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
+        <spring.boot.version>2.5.12</spring.boot.version>
 
         <!-- database -->
         <mysql.version>5.1.49</mysql.version>
