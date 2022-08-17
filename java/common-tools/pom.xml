@@ -27,7 +27,6 @@
 
         <!-- common-api module -->
         <arthas.version>3.6.4</arthas.version>
-        <swagger.verion>3.0.0</swagger.verion>
         <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
         <swagger2.knife4j>3.0.3</swagger2.knife4j>
         <swagger.starter>3.0.0</swagger.starter>
@@ -75,23 +74,6 @@
                 <groupId>com.taobao.arthas</groupId>
                 <artifactId>arthas-spring-boot-starter</artifactId>
                 <version>${arthas.version}</version>
-            </dependency>
-
-            <!-- swagger3 -->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-oas</artifactId>
-                <version>${swagger.verion}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger.verion}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger.verion}</version>
             </dependency>
 
             <!-- logger -->

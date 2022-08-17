@@ -1,0 +1,25 @@
+jasypt:
+  encryptor:
+    password: ${JASYPT_ENCRYPTOR_PASSWORD}
+
+arthas:
+  # https://arthas.aliyun.com/doc/arthas-properties.html#%E6%94%AF%E6%8C%81%E7%9A%84%E9%85%8D%E7%BD%AE%E9%A1%B9
+  telnetPort: 0
+  httpPort: 0
+  username: arthas
+  password: ${JASYPT_ENCRYPTOR_PASSWORD}
+  agentId: ${spring.application.name}
+  tunnel-server: ws://${COMMON_SERVICE_IP}:7777/ws
+
+# Spring 相关
+spring:
+  mvc:
+    async:
+      request-timeout: 20
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    default-property-inclusion: non_null

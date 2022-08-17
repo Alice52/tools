@@ -1,14 +1,14 @@
 package cn.edu.ntu.boot.encrypt;
 
+import common.swagger.annotation.EnableSwagger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author zack <br>
  * @create 2020-05-03 21:23 <br>
  */
-@EnableSwagger2
+@EnableSwagger
 @SpringBootApplication
 public class ToolEncryptApplication {
 
