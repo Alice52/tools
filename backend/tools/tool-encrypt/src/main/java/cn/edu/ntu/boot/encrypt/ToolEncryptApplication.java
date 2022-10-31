@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Import;
 
 /**
- * @author zack <br>
+ * @author alice52 <br>
  * @create 2020-05-03 21:23 <br>
  */
 @EnableSwagger

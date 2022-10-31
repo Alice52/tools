@@ -3,7 +3,7 @@ VOLUME /tmp
 ARG MODULE_NAME=""
 ARG JASYPT_ENCRYPTOR_PASSWORD=""
 ENV JAVA_OPTS=""
-COPY target/${MODULE_NAME}-1.0-SNAPSHOT.jar app.jar
+ADD target/**.jar app.jar
 
 # RUN wget https://arthas.aliyun.com/arthas-boot.jar
 COPY --from=hengyunabc/arthas:latest /opt/arthas /opt/arthas

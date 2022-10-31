@@ -13,6 +13,9 @@ jobs:
   main:
     runs-on: ubuntu-20.04
     if: "contains(github.event.head_commit.message, '[image]')"
+    strategy:
+      matrix:
+        MODULE_NAME: ["Tool Encrypt"]
     env: # define constant
       PROJECT_PREFIX: backend
       PROJECT_NAME: tools
@@ -56,14 +59,14 @@ jobs:
           cd common-api/ && ./reparent.sh && cd ../
           mvn clean package -DskipTests=true
 
-      - name: Upload $MODULE_NAME Artifact
+      - name: Upload ${{ matrix.MODULE_NAME }} Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: $MODULE_NAME-1.0-SNAPSHOT.jar
+          name: ${MODULE_NAME}-1.0-SNAPSHOT.jar
           path: ${{ github.workspace }}/**/${MODULE_NAME}*.jar
           retention-days: 7
 
-      - name: Push ${MODULE_NAME} Image
+      - name: Push ${{ matrix.MODULE_NAME }} Image
         run: |
           cd $PROJECT_HOME/$PROJECT_PREFIX/$PROJECT_NAME/$MODULE_NAME
           image=$IMAGE_PREFIX-$MODULE_NAME:${TAG}
