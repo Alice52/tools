@@ -1,4 +1,5 @@
 FROM java:openjdk-8u91-jdk
+# FROM openjdk:8u121-jre-alpine
 # FROM hengyunabc/arthas:latest
 VOLUME /tmp
 

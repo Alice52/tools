@@ -1,13 +1,23 @@
 version: '3.0'
 services:
-  project-worklow:
-    image: registry.cn-shanghai.aliyuncs.com/alice52/tools-tool-encrypt:20221031.e507fe0
+  dev-project-test:
+    image: registry.cn-shanghai.aliyuncs.com/alice52/project-project-test:20221031.7e3eeae
     restart: 'on-failure:3'
-    container_name: dev-tool-encrypt
+    container_name: dev-project-test
     volumes:
-      - /root/project-name/logs:/log
+      - /root/dev-project-test/logs:/logs
+    ports:
+      - 8083:8080
+    environment:
+      - TZ=Asia/Shanghai
+
+  dev-tool-generator:
+    image: registry.cn-shanghai.aliyuncs.com/alice52/tools-tool-generator:20221031.933101a
+    restart: 'on-failure:3'
+    container_name: dev-tool-generator
+    volumes:
+      - /root/dev-tool-generator/logs:/logs
     ports:
       - 8010:8080
     environment:
       - TZ=Asia/Shanghai
-      # - spring.profiles.active=cloud
