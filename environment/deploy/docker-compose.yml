@@ -12,7 +12,7 @@ services:
       - TZ=Asia/Shanghai
 
   dev-tool-generator:
-    image: registry.cn-shanghai.aliyuncs.com/alice52/tools-tool-generator:20221031.933101a
+    image: registry.cn-shanghai.aliyuncs.com/alice52/tools-tool-generator:20221031.4b2c7ce
     restart: 'on-failure:3'
     container_name: dev-tool-generator
     volumes:

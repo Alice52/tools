@@ -62,8 +62,8 @@ jobs:
       - name: Upload ${{ matrix.MODULE_NAME }} Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${MODULE_NAME}-1.0-SNAPSHOT.jar
-          path: ${{ github.workspace }}/**/${MODULE_NAME}*.jar
+          name: ${{ env.MODULE_NAME }}-1.0-SNAPSHOT.jar
+          path: ${{ github.workspace }}/**/${{ env.MODULE_NAME }}-*.jar
           retention-days: 7
 
       - name: Push ${{ matrix.MODULE_NAME }} Image
