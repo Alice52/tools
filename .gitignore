@@ -30,3 +30,12 @@ out/
 *.ipr
 *.kotlin_module
 hs_err_pid*
+
+# frontend
+**/node_modules/
+
+!gradle-wrapper.jar
+*.txt
+*.hprof
+*.threads
+*.index

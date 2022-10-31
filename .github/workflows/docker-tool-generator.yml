@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'java/common-tools/tool-generator/**'
+      - '**/tool-generator/**'
       - '.github/workflows/docker-tool-generator.yml'
   pull_request:
 
@@ -14,13 +14,18 @@ jobs:
     runs-on: ubuntu-20.04
     if: "contains(github.event.head_commit.message, '[image]')"
     env: # define constant
-      BACKEND: java
-      PROJECT_NAME: common-tools
-      IMAGE_PREFIX: common
+      PROJECT_PREFIX: backend
+      PROJECT_NAME: tools
+      IMAGE_PREFIX: tools
+      MODULE_NAME: tool-generator
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+          submodules: true
+
       - name: Set up JDK 1.8
         uses: actions/setup-java@v1
         with:
@@ -45,22 +50,22 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Build Common Tool Project
+      - name: Build Project
         run: |
-          cd $PROJECT_HOME/$BACKEND/$PROJECT_NAME/
+          cd $PROJECT_HOME/$PROJECT_PREFIX/$PROJECT_NAME
+          cd common-api/ && ./reparent.sh && cd ../
           mvn clean package -DskipTests=true
 
-      - name: Upload Tool Generator Artifact
+      - name: Upload $MODULE_NAME Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: tool-generator-1.0-SNAPSHOT.jar
-          path: ${{ github.workspace }}/**/tool-generator-1.0-SNAPSHOT.jar
+          name: $MODULE_NAME-1.0-SNAPSHOT.jar
+          path: ${{ github.workspace }}/**/${MODULE_NAME}*.jar
           retention-days: 7
 
-      - name: Push Tool Generator Image
+      - name: Push ${MODULE_NAME} Image
         run: |
-          MODULE_NAME=tool-generator
-          cd $PROJECT_HOME/$BACKEND/$PROJECT_NAME/$MODULE_NAME
+          cd $PROJECT_HOME/$PROJECT_PREFIX/$PROJECT_NAME/$MODULE_NAME
           image=$IMAGE_PREFIX-$MODULE_NAME:${TAG}
           docker build -f Dockerfile --build-arg MODULE_NAME=$MODULE_NAME --build-arg COMMON_SERVICE_IP=$COMMON_SERVICE_IP --build-arg JASYPT_ENCRYPTOR_PASSWORD=$JASYPT_ENCRYPTOR_PASSWORD -t ${image} .
           docker login --username=$ALI_DOCKER_USERNAME --password=$ALI_DOCKER_PASSWORD $ALI_DOCKER_REGISTRY
