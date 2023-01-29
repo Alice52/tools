@@ -40,6 +40,8 @@
         <slf4j.api.version>1.7.36</slf4j.api.version>
         <logback.core.version>1.2.9</logback.core.version>
         <logback.classic.version>1.2.3</logback.classic.version>
+        <aliyun.logback.version>0.1.18</aliyun.logback.version>
+        <janino.version>3.1.9</janino.version>
 
         <!-- tool -->
         <jodah.expiringmap.version>0.5.10</jodah.expiringmap.version>
@@ -126,6 +128,16 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.classic.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.janino</groupId>
+                <artifactId>janino</artifactId>
+                <version>${janino.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun.openservices</groupId>
+                <artifactId>aliyun-log-logback-appender</artifactId>
+                <version>${aliyun.logback.version}</version>
             </dependency>
 
             <!-- tool -->
