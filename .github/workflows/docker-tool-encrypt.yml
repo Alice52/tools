@@ -15,6 +15,7 @@ jobs:
     if: "contains(github.event.head_commit.message, '[image]')"
     strategy:
       matrix:
+        java: ["11", "17"]
         MODULE_NAME: ["Tool Encrypt"]
     env: # define constant
       PROJECT_PREFIX: backend
@@ -29,11 +30,12 @@ jobs:
           fetch-depth: 1
           submodules: true
 
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
+      - name: Set up JDK ${{ matrix.Java }}
+        uses: actions/setup-java@v3
         with:
-          java-version: 1.8
-          # architecture: x64
+          java-version: ${{ matrix.java }}
+          distribution: "zulu"
+          cache: "maven"
 
       - name: Export Global Var
         # define global var, then put to GITHUB_ENV
