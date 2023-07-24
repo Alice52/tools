@@ -368,6 +368,11 @@
                 <artifactId>cos_api</artifactId>
                 <version>${qcloud.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-vault-config</artifactId>
+                <version>4.0.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

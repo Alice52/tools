@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    vault:
+      enabled: false
+      scheme: http
+      host: ENC(3e4bqpbC6nBvuQxy5kHnFhHlt35LOz5wtrtWD0xMqUwUWZtJothplPOdHHdmYD09)
+      port: ENC(4EF3WGde9GHzEmxkVohVh7iv8KhRP7ITC7q5n7tpolQk9eeA8K6miVIFji/mTYl6)
+      authentication: token
+      token: ${VAULT_TOKEN}
+      kv:
+        backend: kv/devl3
+        application-name: antiabuse

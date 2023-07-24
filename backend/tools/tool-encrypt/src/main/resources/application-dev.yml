@@ -8,5 +8,14 @@ arthas:
   httpPort: 0
   username: arthas
   password: ${JASYPT_ENCRYPTOR_PASSWORD}
-  agentId: ${spring.application.name:}
+  agentId: ${spring.application.name}
   tunnel-server: ws://${COMMON_SERVICE_IP:}:7777/ws
+
+# config in vault
+vault:
+  config:
+    token: ${za:}
+
+logging:
+  level:
+    root: info

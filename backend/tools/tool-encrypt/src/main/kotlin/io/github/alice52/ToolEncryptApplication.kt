@@ -2,7 +2,8 @@ package io.github.alice52
 
 import common.redis.config.ExcludeRedisConfig
 import common.swagger.annotation.EnableSwagger
-import io.github.alice52.utils.CustomEncryptorUtil
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
@@ -16,6 +17,10 @@ import org.springframework.context.annotation.Import
 open class ToolEncryptApplication
 
 fun main(vararg args: String) {
-    CustomEncryptorUtil.stringEncryptor()
+
     runApplication<ToolEncryptApplication>(*args)
 }
+
+// logger()
+inline fun <reified R : Any> R.logger(): Logger =
+    LoggerFactory.getLogger(this::class.java.name.substringBefore("\$Companion"))
