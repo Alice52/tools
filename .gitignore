@@ -40,3 +40,4 @@ hs_err_pid*
 *.threads
 *.index
 .husky/commit-msg
+**/.DS_Store
