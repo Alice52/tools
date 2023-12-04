@@ -16,10 +16,10 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, '[image]')"
     strategy:
       matrix:
-        java: ["11", "17"]
+        java: ['11', '17']
     env: # define constant
       PROJECT_PREFIX: backend
-      PROJECT_NAME: tools
+      PROJECT_NAME: j-tools
 
     steps:
       - name: Checkout Code
@@ -32,8 +32,8 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java }}
-          distribution: "zulu"
-          cache: "maven"
+          distribution: 'zulu'
+          cache: 'maven'
 
       - name: Export Global Var
         # define global var, then put to GITHUB_ENV
@@ -56,6 +56,5 @@ jobs:
       - name: Build Project
         run: |
           cd $PROJECT_HOME/$PROJECT_PREFIX/$PROJECT_NAME
-          cd common-api/ && ./reparent.sh && cd ../
+          # cd common-api/ && ./reparent.sh && cd ../
           mvn clean package -DskipTests=true
-
