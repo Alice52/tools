@@ -1,0 +1,68 @@
+name: Build Image Go-Tool-Encrypt
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'backend/go-tools/github.com/alice52/**'
+      - '.github/workflows/docker-tool-encrypt-go.yml'
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest"]
+        go: ["1.20.x", "1.21.x"]
+    runs-on: ${{ matrix.os }}
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    env:
+      PROJECT_PREFIX: backend/go-tools/github.com/alice52
+      IMAGE_PREFIX: g-tools
+    steps:
+      - name: Export Global Var
+        run: |
+          echo "PROJECT_HOME=$PWD" >> $GITHUB_ENV
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Export Global Var
+        # define global var, then put to GITHUB_ENV
+        run: |
+          echo "ALI_DOCKER_REGISTRY=${{ secrets.ALI_DOCKER_HUB_REGISTRY }}" >> $GITHUB_ENV
+          echo "ALI_DOCKER_USERNAME=${{ secrets.ALI_DOCKER_REGISTRY_USERNAME }}" >> $GITHUB_ENV
+          echo "ALI_DOCKER_PASSWORD=${{ secrets.ALI_DOCKER_REGISTRY_PASSWORD }}" >> $GITHUB_ENV
+          echo "PROJECT_HOME=$PWD" >> $GITHUB_ENV
+          echo "TAG=`echo \`date +%Y%m%d\`.${GITHUB_SHA} | cut -c1-16`" >> $GITHUB_ENV
+
+      - uses: WillAbides/setup-go-faster@v1.12.0
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Build tool-encrypt
+        run: |
+          MODULE_NAME=tool-encrypt
+          cd $PROJECT_HOME/$PROJECT_PREFIX/$MODULE_NAME
+          go build -o main.zip
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.os }}-${{ matrix.go }}-main
+          path: ${{ github.workspace }}/**/main.zip
+          retention-days: 7
+
+      - name: Push Image
+        run: |
+          MODULE_NAME=tool-encrypt
+          cd $PROJECT_HOME/$PROJECT_PREFIX/$MODULE_NAME
+          image=$IMAGE_PREFIX-$MODULE_NAME-go${{ matrix.go }}:${TAG}
+          docker build -f Dockerfile -t ${image} .
+          docker login --username=$ALI_DOCKER_USERNAME --password=$ALI_DOCKER_PASSWORD $ALI_DOCKER_REGISTRY
+          docker tag $image $ALI_DOCKER_REGISTRY/alice52/$image
+          docker push $ALI_DOCKER_REGISTRY/alice52/$image
+          echo "image:" ${image}

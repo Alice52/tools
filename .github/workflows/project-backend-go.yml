@@ -1,0 +1,41 @@
+name: Build Go-Tools-Backend
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'backend/go-tools/github.com/alice52/**'
+      - '.github/workflows/project-backend-go.yml'
+  pull_request:
+  workflow_call:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest", "macOS-latest"]
+        go: ["1.20.x", "1.21.x"]
+    runs-on: ${{ matrix.os }}
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    env:
+      PROJECT_PREFIX: backend/go-tools/github.com/alice52
+    steps:
+      - name: Export Global Var
+        run: |
+          echo "PROJECT_HOME=$PWD" >> $GITHUB_ENV
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - uses: WillAbides/setup-go-faster@v1.12.0
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Build tool-encrypt
+        run: |
+          MODULE_NAME=tool-encrypt
+          cd $PROJECT_HOME/$PROJECT_PREFIX/$MODULE_NAME
+          go build
