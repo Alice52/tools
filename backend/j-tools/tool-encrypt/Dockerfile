@@ -12,11 +12,9 @@ COPY --from=hengyunabc/arthas:latest /opt/arthas /opt/arthas
 
 RUN sh -c 'ls -la'
 
-ADD ./ /app
-
-RUN sh -c 'ls -la'
+# otherwise target is not exist
+ADD ./ ./
 ADD target/**.jar /app.jar
-RUN sh -c 'ls -la'
 ENV JAVA_OPTS=""
 EXPOSE  8080
 

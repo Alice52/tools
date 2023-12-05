@@ -2,7 +2,10 @@
 
 name: Conventional Commit Lint
 
-on: [push, pull_request]
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
 
 jobs:
   commit-lint:

@@ -1,6 +1,7 @@
 name: Build Image Tool-Generator
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
