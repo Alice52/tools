@@ -27,7 +27,7 @@
         <mssql.version>4.0</mssql.version>
         <oracle.version>11.2.0.3</oracle.version>
         <mongo.version>3.11.0</mongo.version>
-        <jasypt.encrtpy.version>3.0.2</jasypt.encrtpy.version>
+        <jasypt.encrtpy.version>3.0.5</jasypt.encrtpy.version>
     </properties>
 
     <dependencies>
