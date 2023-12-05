@@ -30,7 +30,7 @@
         <kotlin.code.style>official</kotlin.code.style>
 
         <common-api.version>0.0.5</common-api.version>
-        <lombok.version>1.18.24</lombok.version>
+        <lombok.version>1.18.30</lombok.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <spring.boot.version>2.7.18</spring.boot.version>
     </properties>
