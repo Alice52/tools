@@ -21,7 +21,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <maven.compiler.plugin>3.8.1</maven.compiler.plugin>
-        <spring.boot.maven.version>2.2.6.RELEASE</spring.boot.maven.version>
+        <spring.boot.maven.version>2.7.18</spring.boot.maven.version>
 
         <!-- kt -->
         <kotlin.compiler.incremental>false</kotlin.compiler.incremental>
@@ -32,7 +32,7 @@
         <common-api.version>0.0.5</common-api.version>
         <lombok.version>1.18.24</lombok.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
-        <spring.boot.version>2.7.5</spring.boot.version>
+        <spring.boot.version>2.7.18</spring.boot.version>
     </properties>
 
     <dependencyManagement>
