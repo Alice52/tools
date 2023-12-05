@@ -1,4 +1,4 @@
-FROM openjdk:17-jre-alpine
+FROM adoptopenjdk:17-jre-hotspot-alpine
 # FROM java:openjdk-8u91-jdk
 # FROM openjdk:8u121-jre-alpine
 VOLUME /tmp
