@@ -1,4 +1,4 @@
-FROM openjdk:17
+FROM openjdk:17.0.2
 # FROM java:openjdk-8u91-jdk
 # FROM openjdk:8u121-jre-alpine
 # FROM hengyunabc/arthas:latest
