@@ -63,7 +63,7 @@ jobs:
           mvn clean package -DskipTests=true
 
       - name: Upload ${{ matrix.MODULE_NAME }} Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.MODULE_NAME }}-jdk${{ matrix.java }}-1.0-SNAPSHOT.jar
           path: ${{ github.workspace }}/**/${{ env.MODULE_NAME }}-*.jar
