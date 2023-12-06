@@ -39,7 +39,7 @@ jobs:
           echo "PROJECT_HOME=$PWD" >> $GITHUB_ENV
           echo "TAG=`echo \`date +%Y%m%d\`.${GITHUB_SHA} | cut -c1-16`" >> $GITHUB_ENV
 
-      - uses: WillAbides/setup-go-faster@v1.12.0
+      - uses: WillAbides/setup-go-faster@v1.13.0
         with:
           go-version: ${{ matrix.go }}
 
