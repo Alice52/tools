@@ -50,7 +50,7 @@ jobs:
           go build -o main.zip
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.os }}-${{ matrix.go }}-main
           path: ${{ github.workspace }}/**/main.zip
