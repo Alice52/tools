@@ -1,15 +1,5 @@
 version: '3.0'
 services:
-  dev-project-test:
-    image: registry.cn-shanghai.aliyuncs.com/alice52/project-project-test:20221031.7e3eeae
-    restart: 'on-failure:3'
-    container_name: dev-project-test
-    volumes:
-      - /root/dev-project-test/logs:/logs
-    ports:
-      - 8083:8080
-    environment:
-      - TZ=Asia/Shanghai
 
   dev-tool-generator:
     image: registry.cn-shanghai.aliyuncs.com/alice52/tools-tool-generator:20221031.4b2c7ce
@@ -21,3 +11,22 @@ services:
       - 8010:8080
     environment:
       - TZ=Asia/Shanghai
+
+  common-tool-encrypt:
+    image: registry.cn-shanghai.aliyuncs.com/alice52/j-tools-tool-encrypt-jdk17:20231205.c4ec740
+    restart: 'always'
+    container_name: dev-common-tool-encrypt
+    environment:
+      JAVA_OPTS: "-Xms256m -Xmx256m"
+      TZ: Asia/Shanghai
+    ports:
+      - 8080:8080
+
+  common-tool-encrypt-go:
+    image: registry.cn-shanghai.aliyuncs.com/alice52/g-tools-tool-encrypt-go1.20.x:20231222.4f85ee2
+    restart: 'always'
+    container_name: dev-common-tool-encrypt-go
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 8088:8080
