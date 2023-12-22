@@ -17,9 +17,9 @@ class EncryptController(
     fun doEncrypt(@RequestParam("encryptWord") encryptWord: String) = encrypt(encryptWord)
 
     @GetMapping("/decrypt")
-    fun doDecrypt(@RequestParam("decryWord") decryWord: String) {
+    fun doDecrypt(@RequestParam("decryWord") decryWord: String): String {
         logger().info("decrypt: $decryWord")
-        decrypt(decryWord)
+        return decrypt(decryWord)
     }
 
     private fun encrypt(encryptWord: String) = encryptBean.encrypt(encryptWord);
