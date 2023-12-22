@@ -1,0 +1,122 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a crypto server by golang.",
+        "title": "Swagger Crypto API",
+        "termsOfService": "https://github.com/alice52",
+        "contact": {
+            "name": "alice52",
+            "url": "https://github.com/alice52/tools",
+            "email": "zzhang_xz@163.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/decrypt": {
+            "get": {
+                "description": "Decrypts a value using Jasypt",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Crypto"
+                ],
+                "summary": "Decrypt a value",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Jasypt encryption key",
+                        "name": "key",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Value to decrypt",
+                        "name": "value",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.R"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.R"
+                        }
+                    }
+                }
+            }
+        },
+        "/encrypt": {
+            "get": {
+                "description": "Encrypts a value using Jasypt",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Crypto"
+                ],
+                "summary": "Encrypt a value",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Jasypt encryption key",
+                        "name": "key",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Value to encrypt",
+                        "name": "value",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.R"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.R"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.R": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "data": {},
+                "msg": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

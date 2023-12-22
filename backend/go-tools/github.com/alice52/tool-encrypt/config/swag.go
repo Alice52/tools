@@ -15,13 +15,10 @@ func Swag(r *gin.Engine) {
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	// Redirect /swagger to /swagger/index.html
-	r.GET("/swagger", func(c *gin.Context) {
+	swagRedirectHandler := func(c *gin.Context) {
 		c.Redirect(http.StatusMovedPermanently, "/swagger/index.html")
-	})
-
-	// Redirect /api to /swagger/index.html
-	r.GET("/api", func(c *gin.Context) {
-		c.Redirect(http.StatusMovedPermanently, "/swagger/index.html")
-	})
-
+	}
+	r.GET("/swagger", swagRedirectHandler)
+	r.GET("/api", swagRedirectHandler)
+	r.GET("/", swagRedirectHandler)
 }

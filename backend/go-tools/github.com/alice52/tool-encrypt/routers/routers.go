@@ -13,12 +13,9 @@ type Option func(e *gin.Engine)
 //   - then provider init router func
 //
 // 2. considering parse folder path as router prefix
-func Include(ops ...Option) *gin.Engine {
+func Include(r *gin.Engine, ops ...Option) {
 
-	r := gin.Default()
 	for _, opFunc := range ops {
 		opFunc(r)
 	}
-
-	return r
 }
