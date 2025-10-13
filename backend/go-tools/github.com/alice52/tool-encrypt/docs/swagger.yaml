@@ -20,6 +20,72 @@ info:
   title: Swagger Crypto API
   version: "1.0"
 paths:
+  /aes-decrypt:
+    get:
+      consumes:
+      - application/json
+      description: Decrypts a value by aes
+      parameters:
+      - description: aes key
+        in: query
+        name: key
+        type: string
+      - description: aes iv
+        in: query
+        name: iv
+        type: string
+      - description: Value to decrypt
+        in: query
+        name: value
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.R'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.R'
+      summary: Decrypt a value by aes
+      tags:
+      - Aes
+  /aes-encrypt:
+    get:
+      consumes:
+      - application/json
+      description: Encrypts a value by aes
+      parameters:
+      - description: aes key
+        in: query
+        name: key
+        type: string
+      - description: aes iv
+        in: query
+        name: iv
+        type: string
+      - description: Value to encrypt
+        in: query
+        name: value
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.R'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/model.R'
+      summary: Encrypt a value by aes
+      tags:
+      - Aes
   /decrypt:
     get:
       consumes:

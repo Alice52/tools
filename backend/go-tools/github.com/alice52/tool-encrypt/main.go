@@ -5,6 +5,7 @@ import (
 	"github.com/alice52/tool-encrypt/config"
 	"github.com/alice52/tool-encrypt/middleware"
 	"github.com/alice52/tool-encrypt/routers"
+	"github.com/alice52/tool-encrypt/service/aes"
 	"github.com/alice52/tool-encrypt/service/crypto"
 	"github.com/gin-gonic/gin"
 )
@@ -35,7 +36,7 @@ func main() {
 	r.Use(middleware.Recovery()) // recovery by custom code
 
 	// 4. register router
-	routers.Include(r, crypto.Routers)
+	routers.Include(r, crypto.Routers, aes.Routers)
 
 	// 5. run container
 	err := r.Run(":8080")

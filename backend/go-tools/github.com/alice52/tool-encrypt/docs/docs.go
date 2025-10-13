@@ -24,6 +24,106 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/aes-decrypt": {
+            "get": {
+                "description": "Decrypts a value by aes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Aes"
+                ],
+                "summary": "Decrypt a value by aes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "aes key",
+                        "name": "key",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "aes iv",
+                        "name": "iv",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Value to decrypt",
+                        "name": "value",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.R"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.R"
+                        }
+                    }
+                }
+            }
+        },
+        "/aes-encrypt": {
+            "get": {
+                "description": "Encrypts a value by aes",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Aes"
+                ],
+                "summary": "Encrypt a value by aes",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "aes key",
+                        "name": "key",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "aes iv",
+                        "name": "iv",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Value to encrypt",
+                        "name": "value",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.R"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.R"
+                        }
+                    }
+                }
+            }
+        },
         "/decrypt": {
             "get": {
                 "description": "Decrypts a value using Jasypt",
